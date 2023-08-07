@@ -10,6 +10,7 @@ function ln_dados_table_creator()
 
             nome varchar(50) NOT NULL,
             email varchar (50) NOT NULL,
+            data varchar (50) NOT NULL,
 
             PRIMARY KEY id(id)
             )$charset_collate;";
@@ -76,7 +77,7 @@ function da_ln_dados_list_callback()
     <?php 
 
     $table_name = $wpdb->prefix . 'ln_dados';
-    $employee_list = $wpdb->get_results($wpdb->prepare("select * FROM $table_name ORDER BY nome asc "), ARRAY_A);
+    $employee_list = $wpdb->get_results($wpdb->prepare("select * FROM $table_name ORDER BY id desc "), ARRAY_A);
     if (count($employee_list) > 0): ?>  
 
         <div class="busca">
@@ -130,7 +131,7 @@ function da_ln_dados_resultado_busca($employee_list){?>
         <?php $i = 1;
         foreach ($employee_list as $index => $employee): ?>
             <tr>
-                <td><?php echo $i++; ?></td>
+                <td><?php echo $employee['id']; ?></td>
                 <td><?php echo $employee['nome']; ?></td>
                 <td><?php echo $employee['email']; ?></td>
             </tr>
